@@ -1,18 +1,14 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-//드롭다운기능 props안에 options(드롭다운 목록), defaultSelected(드롭다운 선택전 기본으로 나오는 텍스트)를 통해 값 설정가능
-// const options = ["옵션 1", "옵션 2", "옵션 3"];
-// <DropDown options={options2} defaultSelected="선택하세요" />
+
 const DropdownContainer = styled.div`
   display: flex;
   align-items: center;
-  width: auto;
+  width: 500px; /* 부모 컴포넌트와 일치 */
   border: 1px solid #ccc;
   padding: 5px;
   border-radius: 10px;
   position: relative;
-  background-color: white;
-  
 `;
 
 const DropdownButton = styled.button`
@@ -24,6 +20,8 @@ const DropdownButton = styled.button`
   background: white;
   text-align: left;
   cursor: pointer;
+  color: #000; /* 텍스트 색상 명시 */
+  overflow: visible; /* 텍스트 잘림 방지 */
 `;
 
 const DropdownList = styled.ul`
@@ -38,7 +36,7 @@ const DropdownList = styled.ul`
   border: 1px solid #ccc;
   border-top: none;
   border-radius: 0 0 5px 5px;
-  display: ${(props) => (props.isOpen ? "block" : "none")};
+  display: ${(props) => (props.$isOpen ? "block" : "none")}; /* Transient Prop 사용 */
   max-height: 200px;
   overflow-y: auto;
 `;
@@ -56,6 +54,7 @@ export default function DropDown({ options, defaultSelected = "선택하세요" 
   const [selected, setSelected] = useState(defaultSelected);
 
   const handleSelect = (option) => {
+    console.log("Selected option:", option);
     setSelected(option);
     setIsOpen(false);
   };
@@ -65,7 +64,7 @@ export default function DropDown({ options, defaultSelected = "선택하세요" 
       <DropdownButton onClick={() => setIsOpen(!isOpen)}>
         {selected}
       </DropdownButton>
-      <DropdownList isOpen={isOpen}>
+      <DropdownList $isOpen={isOpen}>
         {options.map((option, index) => (
           <DropdownItem key={index} onClick={() => handleSelect(option)}>
             {option}

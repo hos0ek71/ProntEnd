@@ -32,9 +32,11 @@ const ModalContainer = styled.div`
 const CloseButton = styled.button`
   float: right;
   border: none;
-  background: none;
+  background: white;
   font-size: 20px;
   cursor: pointer;
+  color: black;
+
 `;
 
 const Header = styled.div`

@@ -32,8 +32,8 @@ const CloseButton = styled.button`
   position: absolute;
   top: 10px; /* 상단에서 10px 떨어짐 (모달 내부) */
   right: 10px; /* 우측에서 10px 떨어짐 (모달 내부) */
-  background: black;
-  color: white; /* "X"가 잘 보이도록 흰색으로 설정 */
+  background: white;
+  color: black; /* "X"가 잘 보이도록 흰색으로 설정 */
   font-size: 20px;
   border: none; /* 기본 테두리 제거 */
   border-radius: 50%; /* 원형 버튼으로 스타일링 (선택 사항) */

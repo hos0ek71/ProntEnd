@@ -4,12 +4,14 @@ import styled from "styled-components";
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  width: 223px;
-  height: 400px;
+  width: auto;
+  height: auto;
   border: 1px solid #799fc4;
   border-radius: 10px;
   background-color: white;
   padding: 10px;
+  justify-content: flex-center;
+  
 `;
 
 const TextInput = styled.input`
@@ -40,8 +42,8 @@ const Label = styled.label`
 `;
 
 const ApplyButton = styled.button`
-  width: 40px;
-  height: 20px;
+  width: 60px;
+  height: 30px;
   border: 1px solid #799fc4;
   background-color: white;
   color: #799fc4;
@@ -57,6 +59,15 @@ const ApplyButton = styled.button`
 
 const DropdownContainer = styled.div`
   margin-top: 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px; /* gap을 줄여서 간격 조정 */
+  flex-wrap: nowrap; 
+`;
+
+const DropdownLabel = styled.p`
+  font-size: 13px;
+  white-space: nowrap; /* 텍스트가 줄 바꿈되지 않도록 설정 */
 `;
 
 const Select = styled.select`
@@ -119,14 +130,14 @@ export default function Search() {
       </CheckBox>
       <p style={{fontWeight: 'bold'}}>검색조건</p>
       <DropdownContainer>
-      <span style={{ fontSize: '13px' , marginRight: '5px'}}>경력</span> 
-        <Select value={selectedValue} onChange={handleDropdownChange}>
-          <option value="option1"></option>
-          <option value="option2">1년이하 </option>
-          <option value="option3">1년이상 </option>
-          <option value="option4">5년이상 </option>
-        </Select>
-      </DropdownContainer>
+  <DropdownLabel>경력</DropdownLabel>
+  <Select value={selectedValue} onChange={handleDropdownChange}>
+    <option value="option1"></option>
+    <option value="option2">1년이하</option>
+    <option value="option3">1년이상</option>
+    <option value="option4">5년이상</option>
+  </Select>
+</DropdownContainer>
 
       
       <SelectContainer2>
@@ -151,13 +162,13 @@ export default function Search() {
         </Label>
         </SelectContainer2>
         <DropdownContainer>
-          <span style={{ fontSize: '13px' , marginRight: '5px'}}>평균가격</span> 
-        <Select value={selectedValue} onChange={handleDropdownChange}>
-          <option value="option1"></option>
-          <option value="option2">10만원이하</option>
-          <option value="option3">10만원이상</option>
-        </Select>
-      </DropdownContainer>
+  <DropdownLabel>평균가격</DropdownLabel>
+  <Select value={selectedValue} onChange={handleDropdownChange}>
+    <option value="option1"></option>
+    <option value="option2">10만원이하</option>
+    <option value="option3">10만원이상</option>
+  </Select>
+</DropdownContainer>
     </Container>
 
   );
