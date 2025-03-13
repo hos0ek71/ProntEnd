@@ -13,7 +13,6 @@ const Container = styled.button`
   margin-top: 40px;
   border-radius: 10px;
   border: 1px solid;
-  background-color: white;
   padding: 10px;
 `;
 
@@ -60,13 +59,14 @@ width: 70%;
   justify-content: space-between;
   margin-top: 20px;
   gap: 20px;
+  
 `;
 
 const CancelButton = styled.button`
   width: 50%;
   border: 1px solid black;
   padding: 10px 20px;
-  background: white;
+  background: black;
   cursor: pointer;
 `;
 
@@ -126,7 +126,9 @@ export default function ModalContent() {
           <h2>글을 삭제하시겠습니까?</h2>
           <p>삭제하시면 다시 복구시킬 수 없습니다.</p>
           <ButtonWrapper>
-            <CancelButton onClick={() => setIsModalOpen(false)}>취소</CancelButton>
+            <CancelButton 
+              onClick={() => 
+                setIsModalOpen(false)}>취소</CancelButton>
             <ConfirmButton
               onClick={() => {
                 setIsVisible(false); // 컴포넌트 숨기기
