@@ -22,7 +22,7 @@ const Button = styled.button`
   }
 `;
 
-const NextButtonUI = ({to, onClick, children}) => {
+const NextButtonUI = ({to, onClick, children, className}) => {
   const navigate = useNavigate();
   
   const handleClick = () => {
@@ -30,7 +30,7 @@ const NextButtonUI = ({to, onClick, children}) => {
     if (to) navigate(to)
   }
 
-  return <Button type="button" onClick={handleClick}>{children}</Button>;
+  return <Button className={className} type="button" onClick={handleClick}>{children}</Button>;
 };
 
 export default NextButtonUI;

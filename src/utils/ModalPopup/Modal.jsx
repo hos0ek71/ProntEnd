@@ -49,11 +49,16 @@ const CloseButton = styled.button`
   }
 `;
 
-export default function RequestPopup({ onClose, children, className }) {
+export default function Modal({ onClose, children, className }) {
   return (
     <Overlay>
       <ModalContainer className={className}>
-        <CloseButton onClick={onClose}>X</CloseButton>
+        <CloseButton onClick={() => {
+            console.log("X 버튼 클릭됨!"); // 🔍 디버깅 코드 추가
+            onClose(); // onClose 호출
+          }}
+        >
+          X</CloseButton>
         {children}
       </ModalContainer>
     </Overlay>
