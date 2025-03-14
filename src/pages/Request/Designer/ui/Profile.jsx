@@ -5,21 +5,21 @@ import jeans from "../../../../assets/jeans.png";
 
 const Container = styled.div`
   display: flex;
+  flex-direction: column; /* 수직 방향으로 배치 */
   position: relative;
   width: 250px;
   height: 250px;
   background-color: white;
-  border : 0.5px solid;
-  margin : 30px;
+  border: 0.5px solid #ccc; /* 스크린샷에 맞춘 경계선 색상 */
+  margin: 30px;
+  justify-content: space-between; /* 상단 이미지와 하단 텍스트 사이에 공간 분배 */
+  overflow: hidden; /* 내용이 넘치면 숨김 */
 `;
 
 const JeansImage = styled.img`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%); /* 정중앙 정렬 */
-  width: 250px;
-  height: 200px;
+  width: 100%; /* 컨테이너 너비에 맞춤 */
+  height: 200px; /* 이미지 높이 고정 */
+  object-fit: cover; /* 이미지가 컨테이너에 맞게 조정 */
 `;
 
 const CartButton = styled.button`
@@ -32,6 +32,7 @@ const CartButton = styled.button`
   background: none;
   cursor: pointer;
   padding: 0;
+  z-index: 2; /* 버튼이 텍스트 위에 위치 */
 `;
 
 const CartImage = styled.img`
@@ -39,9 +40,37 @@ const CartImage = styled.img`
   height: 100%;
 `;
 
-export default function Profile() {
+const Text = styled.div`
+  width: 100%;
+  font-size: 14px;
+  color: #333;
+  background-color: rgba(255, 255, 255, 0.8); /* 반투명 배경 */
+  text-align: center;
+  white-space: wrap; 
+  z-index: 1; /* 텍스트가 이미지 아래에 위치 */
+`;
+
+// 해시태그 스타일을 위한 컴포넌트 (선택 사항)
+const Hashtag = styled.span`
+  color: #1e90ff; /* 해시태그 파란색 */
+  margin: 0 2px; /* 간격 조정 */
+`;
+
+export default function Profile({ text = " #청바지 #스키니진 #와이드진" }) {
   const handleClick = () => {
     alert("카트 버튼이 클릭되었습니다!");
+  };
+
+  // 텍스트를 해시태그로 분리 (간단한 예시)
+  const renderText = () => {
+    const parts = text.split(" ");
+    return parts.map((part, index) =>
+      part.startsWith("#") ? (
+        <Hashtag key={index}>{part}</Hashtag>
+      ) : (
+        <span key={index}>{part} </span>
+      )
+    );
   };
 
   return (
@@ -50,6 +79,7 @@ export default function Profile() {
       <CartButton onClick={handleClick}>
         <CartImage src={cart2} alt="cart" />
       </CartButton>
+      <Text>{renderText()}</Text>
     </Container>
   );
 }
