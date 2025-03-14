@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import cart2 from "../../../../assets/cart2.png";
 import jeans from "../../../../assets/jeans.png";
+import { NextButtonUI } from "../../../../components";
+import { Modal } from "../../../../utils";
 
-const Container = styled.div`
+const Container = styled(NextButtonUI)`
   display: flex;
   flex-direction: column; /* 수직 방향으로 배치 */
   position: relative;
@@ -56,10 +58,11 @@ const Hashtag = styled.span`
   margin: 0 2px; /* 간격 조정 */
 `;
 
-export default function Profile({ text = " #청바지 #스키니진 #와이드진" }) {
+export default function Profile({ text = " #청바지 #스키니진 #와이드진",  }) {
   const handleClick = () => {
     alert("카트 버튼이 클릭되었습니다!");
   };
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   // 텍스트를 해시태그로 분리 (간단한 예시)
   const renderText = () => {
@@ -74,12 +77,15 @@ export default function Profile({ text = " #청바지 #스키니진 #와이드�
   };
 
   return (
-    <Container>
+    <Container onClick={() => setIsModalOpen(true) }>
       <JeansImage src={jeans} alt="jeans" />
       <CartButton onClick={handleClick}>
         <CartImage src={cart2} alt="cart" />
       </CartButton>
       <Text>{renderText()}</Text>
+
+      {isModalOpen && <Modal onClose={() => setIsModalOpen(false)} />}
     </Container>
+
   );
 }
